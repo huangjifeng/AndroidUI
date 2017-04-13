@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1ff0"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="分享"
+        android:textSize="30sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#000" />
+
+    <TextView
+        android:id="@+id/delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#7ff0"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="删除"
+        android:textSize="30sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#000" />
+
+    <TextView
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff0"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="保存"
+        android:textSize="30sp" />
+
+</LinearLayout>
