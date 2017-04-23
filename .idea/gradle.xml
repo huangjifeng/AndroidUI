@@ -10,7 +10,14 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/butter_knife" />
+            <option value="$PROJECT_DIR$/dialog" />
+            <option value="$PROJECT_DIR$/floating_action_button" />
+            <option value="$PROJECT_DIR$/linearlayout_compat" />
+            <option value="$PROJECT_DIR$/popup_menu" />
             <option value="$PROJECT_DIR$/popup_window" />
+            <option value="$PROJECT_DIR$/recycle_view" />
+            <option value="$PROJECT_DIR$/spinner" />
             <option value="$PROJECT_DIR$/swipe_refresh_layout" />
           </set>
         </option>

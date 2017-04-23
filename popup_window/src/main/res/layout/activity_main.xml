@@ -12,4 +12,20 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="Hello World!" />
+
+    <Button
+        android:id="@+id/button_list_popup_window"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="list_popup_window" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        style="@android:style/Widget.Holo.Light.Spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_list_popup_window"/>
 </RelativeLayout>

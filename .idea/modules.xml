@@ -4,7 +4,14 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidUI.iml" filepath="$PROJECT_DIR$/AndroidUI.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/butter_knife/butter_knife.iml" filepath="$PROJECT_DIR$/butter_knife/butter_knife.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dialog/dialog.iml" filepath="$PROJECT_DIR$/dialog/dialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/floating_action_button/floating_action_button.iml" filepath="$PROJECT_DIR$/floating_action_button/floating_action_button.iml" />
+      <module fileurl="file://$PROJECT_DIR$/linearlayout_compat/linearlayout_compat.iml" filepath="$PROJECT_DIR$/linearlayout_compat/linearlayout_compat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/popup_menu/popup_menu.iml" filepath="$PROJECT_DIR$/popup_menu/popup_menu.iml" />
       <module fileurl="file://$PROJECT_DIR$/popup_window/popup_window.iml" filepath="$PROJECT_DIR$/popup_window/popup_window.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recycle_view/recycle_view.iml" filepath="$PROJECT_DIR$/recycle_view/recycle_view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spinner/spinner.iml" filepath="$PROJECT_DIR$/spinner/spinner.iml" />
       <module fileurl="file://$PROJECT_DIR$/swipe_refresh_layout/swipe_refresh_layout.iml" filepath="$PROJECT_DIR$/swipe_refresh_layout/swipe_refresh_layout.iml" />
     </modules>
   </component>

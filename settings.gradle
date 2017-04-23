@@ -1,1 +1,1 @@
-include ':app', ':swipe_refresh_layout', ':popup_window'
+include ':app', ':swipe_refresh_layout', ':popup_window', ':popup_menu', ':dialog', ':linearlayout_compat', ':spinner', ':floating_action_button', ':recycle_view', ':butter_knife'
