@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".first.FirstActivity" />
+        <activity android:name=".dongnao.DongActivity" />
     </application>
 
 </manifest>
