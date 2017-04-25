@@ -1,92 +1,95 @@
 package com.huangjifeng.recycleview.first;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
-import java.util.List;
+import com.huangjifeng.recycleview.R;
+
+import java.util.ArrayList;
 
 /**
- * Created by Administrator on 2017/4/23.
+ * Created by Administrator on 2017/4/25.
  */
 
-public abstract class FirstRecyclerViewAdapter extends RecyclerView.Adapter<FirstViewHolder> {
-
-    private final List<DataDTO> mDatas;
-    private final int mLayoutId;
+public class FirstRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private final Context mContext;
+    private final ArrayList<String> mList;
     private final LayoutInflater mInflater;
-    private onItemClickListener onItemClickListener;
 
-    public interface onItemClickListener {
-
-        void onItemClick(View view, int position);
-
-        void onItemLongClick(View view, int position);
-
+    //通过枚举来记录有多少种item布局
+    public static enum ITEM_TYPE {
+        ITEM_TYPE_THEME,
+        ITEM_TYPE_VIDEO
     }
 
-    public void setonItemClickListener(onItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
-
-    public FirstRecyclerViewAdapter(Context context, List<DataDTO> datas, int layoutId) {
-        this.mDatas = datas;
-        this.mLayoutId = layoutId;
-        mInflater = LayoutInflater.from(context);
+    public FirstRecyclerViewAdapter(Context context, ArrayList<String> list) {
+        this.mContext = context;
+        this.mList = list;
+        mInflater = LayoutInflater.from(mContext);
     }
 
     @Override
-    public FirstViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        FirstViewHolder firstViewHolder = new FirstViewHolder(mInflater.inflate(mLayoutId, parent, false));
-        return firstViewHolder;
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == ITEM_TYPE.ITEM_TYPE_THEME.ordinal()) {
+            View view = mInflater.inflate(R.layout.first_item_01, parent, false);
+            return new FirstThemeViewHolder(view);
+        } else if (viewType == ITEM_TYPE.ITEM_TYPE_VIDEO.ordinal()) {
+            View view = mInflater.inflate(R.layout.first_item_02, parent, false);
+            return new FirstVideoViewHolder(view);
+        }
+        return null;
     }
 
     @Override
-    public void onBindViewHolder(FirstViewHolder holder, int position) {
-        convert(holder, mDatas.get(position));
-        setUpItemEvent(holder);
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof FirstThemeViewHolder) {
+            FirstThemeViewHolder firstThemeViewHolder = (FirstThemeViewHolder) holder;
+            firstThemeViewHolder.textView.setText("这是头标签");
+        } else if (holder instanceof FirstVideoViewHolder) {
+            FirstVideoViewHolder firstVideoViewHolder = (FirstVideoViewHolder) holder;
+            firstVideoViewHolder.textView.setText(mList.get(position - 1));
+            firstVideoViewHolder.imageView.setImageResource(R.drawable.ding_not_clicked);
+        }
+
     }
 
-    private void setUpItemEvent(final FirstViewHolder holder) {
-        if (onItemClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public int getItemViewType(int position) {
+        if (position % 10 == 0) {
+            return ITEM_TYPE.ITEM_TYPE_THEME.ordinal();
+        } else {
+            return ITEM_TYPE.ITEM_TYPE_VIDEO.ordinal();
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return mList.size();
+    }
+
+    //Called by RecyclerView when it starts observing this Adapter.
+    //通过判断getItemViewType(position)来设置不同的跨度
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof GridLayoutManager) {
+            final GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
+            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
-                public void onClick(View v) {
-                    //这个获取位置的方法，防止添加删除导致位置发生变化
-                    int layoutPosition = holder.getAdapterPosition();
-                    onItemClickListener.onItemClick(holder.itemView, layoutPosition);
-                }
-            });
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    //这个获取位置的方法，防止添加删除导致位置发生变化
-                    int layoutPosition = holder.getAdapterPosition();
-                    onItemClickListener.onItemLongClick(holder.itemView, layoutPosition);
-                    return false;
+                public int getSpanSize(int position) {
+                    if (getItemViewType(position) == ITEM_TYPE.ITEM_TYPE_THEME.ordinal()) {
+                        return gridLayoutManager.getSpanCount();
+                    } else if (getItemViewType(position) == ITEM_TYPE.ITEM_TYPE_VIDEO.ordinal()) {
+                        return 1;
+                    }
+                    return 1;
                 }
             });
         }
     }
-
-    public abstract void convert(FirstViewHolder holder, DataDTO dataDTO);
-
-    @Override
-    public int getItemCount() {
-        return mDatas.size();
-    }
-
-    public void addData(int pos, DataDTO datas) {
-        mDatas.add(pos, datas);
-        notifyItemInserted(pos);
-    }
-
-    public void deleteData(int pos) {
-        mDatas.remove(pos);
-        notifyItemRemoved(pos);
-    }
-
 }
